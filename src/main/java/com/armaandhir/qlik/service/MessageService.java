@@ -24,11 +24,11 @@ public interface MessageService {
 	public Message addMessage(Message message);
 	
 	/**
-	 * Not sure how to implement the palindrome stuff
+	 * 
 	 * @param id
 	 * @return
 	 */
 	public Message getMessage(Long id);
 	
-	public void deleteMessage(Long id);
+	public boolean deleteMessage(Long id);
 }

@@ -47,9 +47,15 @@ public class MessageServiceImpl implements MessageService {
 			return null;
 		}
 		else {
-			// add checks if it is null ?
-			Message retrievedMessage = messageRepository.findOne(id);
-			return retrievedMessage;
+			try {
+				Message retrievedMessage = messageRepository.findOne(id);
+				System.out.println(retrievedMessage);
+				return retrievedMessage;
+			}
+			catch (Exception ex) {
+				System.out.println("Error in getMessage(): " + ex);
+				return null;
+			}
 		}
 	}
 
@@ -57,9 +63,21 @@ public class MessageServiceImpl implements MessageService {
 	@Transactional(
 			propagation = Propagation.REQUIRES_NEW,
 			readOnly = false)
-	public void deleteMessage(Long id) {
-		Message mess = messageRepository.findOne(id);
-		messageRepository.delete(mess);
+	public boolean deleteMessage(Long id) {
+		try {
+			Message mess = messageRepository.findOne(id);
+			if(mess != null) {
+				messageRepository.delete(mess);
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		catch(Exception ex) {
+			System.out.println(ex);
+			return false;
+		}
 	}
 
 }

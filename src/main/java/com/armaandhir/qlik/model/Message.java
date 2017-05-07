@@ -10,6 +10,12 @@ import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+/**
+ * The entity class for Message.
+ * It will persist to the table named as Message which is the name of the class.
+ * @author armaan
+ *
+ */
 @Entity
 public class Message implements Serializable {
 
@@ -27,31 +33,43 @@ public class Message implements Serializable {
 		this.text = text;
 		this.isPalindrome = findPalindrome(text);
 		// As it gets updated in the database as current timestamp automatically
-		this.createdAt = null;
+		this.createdAt = new Date();
 		//this.isDeleted = 0;
 	}
 	
+	/**
+	 * 
+	 */
 	@Id
 	@GeneratedValue
-	@Column(name="id")
+	@Column(name="id", nullable=false)
     @JsonView(View.Summary.class)
 	private long id;
 	
-	@Column(name="author")
+	/**
+	 * 
+	 */
+	@Column(name="author", columnDefinition="varchar(16) NOT NULL")
 	@JsonView(View.Summary.class)
 	private String author;
 	
     /**
      * Max Limit is 250
      */
-	@Column(name="text")
+	@Column(name="text", columnDefinition="varchar(251) NOT NULL")
 	@JsonView(View.Summary.class)
 	private String text;
 	
-	@Column(name="created_at")
+	/**
+	 * 
+	 */
+	@Column(name="created_at", nullable=false)
 	@JsonView(View.Summary.class)
 	private Date createdAt;
 	
+	/**
+	 * This won't be persisted. Just used for determining palindrome
+	 */
 	private transient String isPalindrome;
 	
 	//private short isDeleted;
@@ -112,12 +130,14 @@ public class Message implements Serializable {
 	*/
 	
 	/**
+	 * Determines if a string is palindrome or not.
 	 * @param text		String to be checked for palindrome
-	 * @return short	0 or 1
+	 * @return short	yes or no
 	 */
 	private String findPalindrome(String text) {
 		String string = text.replaceAll("[^a-zA-Z]+", "").trim().toLowerCase();
-	    int len = string.length();
+	    // Could have also used string reverse function and then checked values.
+		int len = string.length();
 	    for (int i = 0; i < len / 2; ++i) {
 	        if (string.charAt(i) != string.charAt(len - 1 - i)) {
 	            return "no";

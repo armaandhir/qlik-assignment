@@ -42,8 +42,8 @@ public class QlikAssignmentController {
 			method=RequestMethod.POST,
 			consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE,
 			produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createMessage(@RequestParam String author, @RequestParam String text) {
-		if (author != null && text != null) {
+    public ResponseEntity<Message> createMessage(@RequestParam String author, @RequestParam String text) {
+		if (author != "" && text != null && text.length() <= 250 && author.length() <= 15) {
 			Message newMessage = new Message(author, text);
 			Message createdMessage = messageService.addMessage(newMessage);
 			// DO SOMEHING HERE
@@ -53,12 +53,12 @@ public class QlikAssignmentController {
 			}
 			else 
 			{
-				return new ResponseEntity<String>("error", HttpStatus.INTERNAL_SERVER_ERROR);
+				return new ResponseEntity<Message>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}
 		// change this to custom return error
 		else {
-			return new ResponseEntity<String>("error", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new IllegalArgumentException("invalid data");
 		}
     }
 	
@@ -70,15 +70,15 @@ public class QlikAssignmentController {
 			method=RequestMethod.GET,
 			consumes=MediaType.APPLICATION_JSON_VALUE,
 			produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> getAllMessages() {
+	public ResponseEntity<Collection<Message>> getAllMessages() {
 		// TRY USING COLLECTION
 		Collection<Message> messageList = messageService.getAllMessages();
-		if (messageList != null) {
-			return new ResponseEntity<Collection<Message>>(messageList, HttpStatus.OK);
+		if (messageList.isEmpty() || messageList == null) {
+			return new ResponseEntity<Collection<Message>>(HttpStatus.NO_CONTENT);
 		}
 		else 
 		{
-			return new ResponseEntity<String>("error", HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Collection<Message>>(messageList, HttpStatus.OK);
 		}
 	}
 	
@@ -90,21 +90,22 @@ public class QlikAssignmentController {
 			method=RequestMethod.GET,
 			consumes=MediaType.APPLICATION_JSON_VALUE,
 			produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> getSpecificMessage(@PathVariable("message_id") Long messageId) {
+	public ResponseEntity<Message> getSpecificMessage(@PathVariable("message_id") Long messageId) {
 		// CHECK IF IT IS LONG
 		if (messageId != null) {
-			Message message = messageService.getMessage(messageId);
+			Message message = new Message();
+			message = messageService.getMessage(messageId);
 			if (message != null) {
 				return new ResponseEntity<Message>(message, HttpStatus.OK);
 			}
 			else 
 			{
-				return new ResponseEntity<String>("error", HttpStatus.INTERNAL_SERVER_ERROR);
+				return new ResponseEntity<Message>(HttpStatus.NOT_FOUND);
 			}
 		}
 		// change this to custom return error
 		else {
-			return new ResponseEntity<String>("error", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new IllegalArgumentException("invalid data");
 		}
 	}
 	
@@ -118,14 +119,13 @@ public class QlikAssignmentController {
 			consumes=MediaType.APPLICATION_JSON_VALUE,
 			produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> deleteAccount(@PathVariable("id") Long id) {
-		// NEEDS ATTENTION
-		try {
-			messageService.deleteMessage(id);
+		boolean b = messageService.deleteMessage(id);
+		if(b){
+			return new ResponseEntity<String>("Deleted with id: " + id, HttpStatus.OK);
 		}
-		catch(Exception ex) {
-			System.out.println("Error deleting record");
+		else{
+			throw new IllegalArgumentException("invalid data");
 		}
-		return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
 	}
 	
 }
