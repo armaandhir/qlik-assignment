@@ -38,7 +38,7 @@ public class Message implements Serializable {
 	}
 	
 	/**
-	 * 
+	 * ID of the message and is the primary key
 	 */
 	@Id
 	@GeneratedValue
@@ -47,28 +47,30 @@ public class Message implements Serializable {
 	private long id;
 	
 	/**
-	 * 
+	 * Stores the author/creator name of the message
 	 */
 	@Column(name="author", columnDefinition="varchar(16) NOT NULL")
 	@JsonView(View.Summary.class)
 	private String author;
 	
     /**
-     * Max Limit is 250
+     * The message placeholder.
+     * Max Limit is 250 characters.
      */
 	@Column(name="text", columnDefinition="varchar(251) NOT NULL")
 	@JsonView(View.Summary.class)
 	private String text;
 	
 	/**
-	 * 
+	 * Stores the time of creation of the message.
 	 */
-	@Column(name="created_at", nullable=false)
+	@Column(name="created_at", columnDefinition="TIMESTAMP NOT NULL")
 	@JsonView(View.Summary.class)
 	private Date createdAt;
 	
 	/**
 	 * This won't be persisted. Just used for determining palindrome
+	 * This field is added as a property in json response when a specific message is requested.
 	 */
 	private transient String isPalindrome;
 	

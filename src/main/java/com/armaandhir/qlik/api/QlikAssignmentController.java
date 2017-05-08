@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,8 @@ import com.armaandhir.qlik.service.MessageService;
 import com.fasterxml.jackson.annotation.JsonView;
 
 /**
+ * The main controller class of the app.
+ * Request mappings are defined here and service layer methods are called to perform actions
  * @author armaan
  *
  */
@@ -27,16 +30,19 @@ public class QlikAssignmentController {
 	@Autowired
 	private MessageService messageService;
 	
+
 	@RequestMapping("/")
     public String index() {
         return "Qlik Assignment app";
     }
+	
 	
 	/**
 	 * @param author
 	 * @param text
 	 * @return
 	 */
+	@CrossOrigin
 	@JsonView(View.Summary.class)
 	@RequestMapping(value="/qlik/api/post",
 			method=RequestMethod.POST,
@@ -83,8 +89,14 @@ public class QlikAssignmentController {
 	}
 	
 	/**
+	 * Returns the message details requested by id.
+	 * Also determines if it is a palindrome. 
+	 * 'isPalindrome' property is added to the json response.
+	 * The palindrome value can be evaluated at client side.
+	 * HTTP GET
+	 * 
 	 * @param expenseId
-	 * @return
+	 * @return Message	message details with isPalindrome property added
 	 */
 	@RequestMapping(value="/qlik/api/message/{message_id}",
 			method=RequestMethod.GET,
@@ -110,8 +122,11 @@ public class QlikAssignmentController {
 	}
 	
 	/**
-	 * @param id
-	 * @return
+	 * Deletes the record from the database with specific message id
+	 * HTTP DELETE Method
+	 * 
+	 * @param id	id of the message to be deleted
+	 * @return String	deleted or IllegalArgumentException on invalid data
 	 */
 	@RequestMapping(
 			value="/qlik/api/delete/{id}",

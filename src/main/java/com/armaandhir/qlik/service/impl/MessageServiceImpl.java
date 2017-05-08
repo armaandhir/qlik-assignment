@@ -23,7 +23,7 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public Collection<Message> getAllMessages() {
 		// might need to override as we need messages sorted by date: latest ones
-		Collection<Message> messages = messageRepository.findAll();
+		Collection<Message> messages = messageRepository.findAllByOrderByCreatedAtAsc();
 		return messages;
 	}
 
