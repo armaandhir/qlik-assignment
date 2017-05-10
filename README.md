@@ -63,13 +63,13 @@ http://localhost:80/{rest endpoints}
 ## REST API
 The service has 4 endpoints.
 
-Use POST\DELETE */qlik/api/message*...
+Use POST\DELETE */qlik/api/message*
 for insering or deleting a message
 
-Use GET */qlik/api/message*...
+Use GET */qlik/api/message*
 for displaying all messages
 
-Use GET */qlik/api/message/{id}*...
+Use GET */qlik/api/message/{id}*
 for displaying a specific message
 
 
