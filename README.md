@@ -1,17 +1,6 @@
 # qlik-assignment
 A simple microservice exposing rest endpoints built with Java Spring boot framework and can be deployed in docker containers.
 
-#### Technologies Used
-* Java Spring boot framework
-* Hibernate ORM and JPA
-* MySQL
-* Gradle
-* Docker
-
-#### Tools
-* Spring Tool Suite (STS)
-* Postman
-
 ## Building, Deployment and Accessing
 
 ### Locally
@@ -72,6 +61,19 @@ for displaying all messages
 Use GET */qlik/api/message/{id}*
 for displaying a specific message
 
+
+## Implementation and Architecture
+
+#### Technologies Used
+* *Java Spring boot framework(Spring4):* For creating rest controllers and mapping 
+* *Hibernate ORM and JPA:* To connect with database, automated generation of tables in database
+* *MySQL:* Stores all the information
+* *Gradle:* Build automation. Also automates tests and ceation of docker containers
+* *Docker:* Run and deploy the service in containers
+
+#### Tools
+* Spring Tool Suite (STS)
+* Postman
 
 
 
