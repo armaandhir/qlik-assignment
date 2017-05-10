@@ -18,10 +18,18 @@ A simple microservice exposing rest endpoints built with Java Spring boot framew
 Clone the repository and make sure you have java 8 and Gradle installed
 
 Start your MySQL server locally and create a database called qlik-assignment.
-Make sure the database uri is then updated in application.properties
+Make sure the database uri is then updated in application.properties.
+No need to create tables as the 
 
 To Build and run the system with one command, navigate to the directory and type
 ```
 gradle bootRun
 ```
+To just build the system, type
+```
+gradle build
+```
+
+### Docker containers
+Clone the repository and make sure you have java 8, Gradle and docker installed
 
