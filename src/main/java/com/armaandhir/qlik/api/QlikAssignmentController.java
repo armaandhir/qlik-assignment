@@ -44,7 +44,7 @@ public class QlikAssignmentController {
 	 */
 	@CrossOrigin
 	@JsonView(View.Summary.class)
-	@RequestMapping(value="/qlik/api/post",
+	@RequestMapping(value="/qlik/api/message",
 			method=RequestMethod.POST,
 			consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE,
 			produces=MediaType.APPLICATION_JSON_VALUE)
@@ -71,6 +71,7 @@ public class QlikAssignmentController {
 	/**
 	 * @return
 	 */
+	@CrossOrigin
 	@JsonView(View.Summary.class)
 	@RequestMapping(value="/qlik/api/message",
 			method=RequestMethod.GET,
@@ -98,6 +99,7 @@ public class QlikAssignmentController {
 	 * @param expenseId
 	 * @return Message	message details with isPalindrome property added
 	 */
+	@CrossOrigin
 	@RequestMapping(value="/qlik/api/message/{message_id}",
 			method=RequestMethod.GET,
 			consumes=MediaType.APPLICATION_JSON_VALUE,
@@ -128,15 +130,16 @@ public class QlikAssignmentController {
 	 * @param id	id of the message to be deleted
 	 * @return String	deleted or IllegalArgumentException on invalid data
 	 */
+	@CrossOrigin
 	@RequestMapping(
-			value="/qlik/api/delete/{id}",
+			value="/qlik/api/message/{id}",
 			method=RequestMethod.DELETE,
 			consumes=MediaType.APPLICATION_JSON_VALUE,
 			produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> deleteAccount(@PathVariable("id") Long id) {
+	public ResponseEntity<Void> deleteAccount(@PathVariable("id") Long id) {
 		boolean b = messageService.deleteMessage(id);
 		if(b){
-			return new ResponseEntity<String>("Deleted with id: " + id, HttpStatus.OK);
+			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 		else{
 			throw new IllegalArgumentException("invalid data");
