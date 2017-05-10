@@ -12,18 +12,23 @@ A simple microservice exposing rest endpoints built with Java Spring boot framew
 * Spring Tool Suite (STS)
 * Postman
 
-## Building and Running the service
+## Building, Deployment and Accessing
 
 ### Locally
 Clone the repository and make sure you have java 8 and Gradle installed
 
 Start your MySQL server locally and create a database called qlik-assignment.
 Make sure the database uri is then updated in application.properties.
-No need to create tables as the 
+No need to create tables as the JPA and hibernate will take care of it.
 
 To Build and run the system with one command, navigate to the directory and type
 ```
 gradle bootRun
+```
+The service can be then tested using POSTMAN.
+Since service will be running locally, the url will be
+```
+http://localhost:8080/{rest endpoints}
 ```
 To just build the system, type
 ```
@@ -49,6 +54,25 @@ Create the qlik-assigment container and dont forget to link with the mysql conta
 docker run -P -d --name qlik-assignment -p 80:8080 --link mysql_docker:localhost armaandhir/qlik-assignment:latest
 ```
 And that's it. Nice and clean!
+The service can be then tested using POSTMAN.
+Since service will be running locally, the url will be
+```
+http://localhost:80/{rest endpoints}
+```
+
+## REST API
+The service has 4 endpoints.
+
+Use POST\DELETE */qlik/api/message*...
+for insering or deleting a message
+
+Use GET */qlik/api/message*...
+for displaying all messages
+
+Use GET */qlik/api/message/{id}*...
+for displaying a specific message
+
+
 
 
 
