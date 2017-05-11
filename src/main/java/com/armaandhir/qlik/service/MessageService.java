@@ -5,6 +5,8 @@ import java.util.Collection;
 import com.armaandhir.qlik.model.Message;
 
 /**
+ * The Service interface that defines the service level methods.
+ * Uses Message modal to return data.
  * @author armaan
  *
  */
@@ -13,7 +15,7 @@ public interface MessageService {
 	
 	/**
 	 * Lists all messages
-	 * @return
+	 * @return Collection<Message>	the collection of all messages
 	 */
 	public Collection<Message> getAllMessages();
 	
@@ -25,10 +27,14 @@ public interface MessageService {
 	
 	/**
 	 * 
-	 * @param id
-	 * @return
+	 * @param id	Long
+	 * @return Message	returns the message requested for with extra information
 	 */
 	public Message getMessage(Long id);
 	
+	/**
+	 * @param id	Long
+	 * @return boolean	true or false
+	 */
 	public boolean deleteMessage(Long id);
 }

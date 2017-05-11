@@ -19,14 +19,20 @@ import com.armaandhir.qlik.service.MessageService;
 import com.fasterxml.jackson.annotation.JsonView;
 
 /**
- * The main controller class of the app.
+ * The main controller class of the application service.
  * Request mappings are defined here and service layer methods are called to perform actions
+ * MessageService is used
+ * CrossOrigin annotation is used so that methods could be tested locally.
+ * 
  * @author armaan
  *
  */
 @RestController
 public class QlikAssignmentController {
 	
+	/**
+	 * All service level methods are performed by this class.
+	 */
 	@Autowired
 	private MessageService messageService;
 	
@@ -38,9 +44,12 @@ public class QlikAssignmentController {
 	
 	
 	/**
-	 * @param author
-	 * @param text
-	 * @return
+	 * Saves a message to the database
+	 * HTTP POST
+	 * 
+	 * @param author	String. Cannot be greater that 15 characters.
+	 * @param text		String. Cannot be greater that 250 characters
+	 * @return ResponseEntity<Message>	Message that has been added or throws exception
 	 */
 	@CrossOrigin
 	@JsonView(View.Summary.class)
@@ -69,7 +78,10 @@ public class QlikAssignmentController {
     }
 	
 	/**
-	 * @return
+	 * Returns the list of all messages.
+	 * HTTP GET
+	 * 
+	 * @return ResponseEntity<Collection<Message>>	A json list having all messages
 	 */
 	@CrossOrigin
 	@JsonView(View.Summary.class)
@@ -125,7 +137,7 @@ public class QlikAssignmentController {
 	
 	/**
 	 * Deletes the record from the database with specific message id
-	 * HTTP DELETE Method
+	 * HTTP DELETE
 	 * 
 	 * @param id	id of the message to be deleted
 	 * @return String	deleted or IllegalArgumentException on invalid data

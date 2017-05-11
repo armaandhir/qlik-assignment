@@ -125,16 +125,11 @@ public class Message implements Serializable {
 		return isPalindrome;
 	}
 	
-	/*
-	public void setIsPalindrome(short isPalindrome) {
-		this.isPalindrome = isPalindrome;
-	}
-	*/
 	
 	/**
 	 * Determines if a string is palindrome or not.
 	 * @param text		String to be checked for palindrome
-	 * @return short	yes or no
+	 * @return String	yes or no
 	 */
 	private String findPalindrome(String text) {
 		String string = text.replaceAll("[^a-zA-Z]+", "").trim().toLowerCase();

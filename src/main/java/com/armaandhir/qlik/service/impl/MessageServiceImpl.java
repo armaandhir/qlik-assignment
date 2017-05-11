@@ -11,6 +11,12 @@ import com.armaandhir.qlik.model.Message;
 import com.armaandhir.qlik.repository.MessageRepository;
 import com.armaandhir.qlik.service.MessageService;
 
+/**
+ * Implementation of Message Service class.
+ * Uses MessageRepository to persist data to the database.
+ * @author armaan
+ *
+ */
 @Service
 @Transactional(
 		propagation = Propagation.SUPPORTS,
