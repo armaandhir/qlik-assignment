@@ -75,6 +75,12 @@ for displaying a specific message
 * Spring Tool Suite (STS)
 * Postman
 
+## Scope of Improvements
+* Currently there is no security. A good practise is to use OAuth2 for securing rest end points and integrate SSL. Spring framework allows to easily integrate security to a web service.
+* getAllMessages() currently gets all the messages from the database which is not a good practise. Use of pagination or getting fixed amount of results is recommended
+* Deleting a row from the database is contradictory. Enabling or disabling a row is preferred.
+* More endpoints can be added for getting posted messages by a user, retrieve only recieved messages etc.
+
 
 
 
