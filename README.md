@@ -50,16 +50,26 @@ http://localhost:80/{rest endpoints}
 ```
 
 ## REST API
-The service has 4 endpoints.
+The service has 4 endpoints which produce JSON responses.
 
-Use POST\DELETE */qlik/api/message*
-for insering or deleting a message
+**POST** */qlik/api/message*
+* Consumes content-type: application/x-www-form-urlencoded
+* requires values of 2 keys: author, text. Author length has to be between 3-16 characters. Text can be atmost 250 characters long
+* returns the posted message or throws exception
 
-Use GET */qlik/api/message*
-for displaying all messages
+**GET** */qlik/api/message*
+* Consumes content-type: application/json
+* returns the list of all messages
 
-Use GET */qlik/api/message/{id}*
-for displaying a specific message
+**POST** */qlik/api/message/{id}*
+* Consumes content-type: application/json
+* requires the id of the specif message
+* returns the specific message and determines if it is a palindrome or http staus NOT_FOUND if doesn't exist
+
+**DELETE** */qlik/api/message/{id}*
+* Consumes content-type: application/json
+* requires the id of the message to be deleted
+* returns nothing on success else throes exception
 
 
 ## Implementation and Architecture
