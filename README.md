@@ -69,7 +69,7 @@ The service has 4 endpoints which produce JSON responses.
 **DELETE** */qlik/api/message/{id}*
 * Consumes content-type: application/json
 * requires the id of the message to be deleted
-* returns nothing on success else throes exception
+* returns nothing on success else throws exception
 
 
 ## Implementation and Architecture
