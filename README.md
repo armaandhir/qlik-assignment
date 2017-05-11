@@ -76,6 +76,13 @@ for displaying a specific message
 * Postman
 
 #### Implementation Architecture
+The restful web service is implemented using spring boot framework(Spring4) which allows the use of annotations to configure and map the end points. 
+The service application has 4 layers:
+* *Modal:* It containes the main Message class which gets persisted. It is defined using JPA and Hibernate configurations allow creating tables easlity into the databases. They expose all necessary setters/getters and business logic.
+* *Service Layer:* Contains all service layer Interfaces/methods which coonect with Repository layer. 
+* *Repository or database Layer:* The layer which connects to the database via Hibernate
+* *Controller:* The main class that defines all rest endpoints and calls the neccessy service layer methods. The endpoints defined here are exposed which provide the interaction with the application service.
+The UI built in any language can use the endpoints to use the service.
 
 ## Scope of Improvements
 * Currently there is no security. A good practise is to use OAuth2 for securing rest end points and integrate SSL. Spring framework allows to easily integrate security to a web service.
