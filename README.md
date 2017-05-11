@@ -1,5 +1,5 @@
 # qlik-assignment
-A simple microservice exposing rest endpoints built with Java Spring boot framework and can be deployed in docker containers.
+A simple microservice exposing rest endpoints built with Java Spring boot framework and can be deployed in docker containers.The simple UI to test this service can be found here: https://github.com/armaandhir/qlik-assignment-ui
 
 ## Building, Deployment and Accessing
 
