@@ -61,7 +61,7 @@ The service has 4 endpoints which produce JSON responses.
 * Consumes content-type: application/json
 * returns the list of all messages
 
-**POST** */qlik/api/message/{id}*
+**GET** */qlik/api/message/{id}*
 * Consumes content-type: application/json
 * requires the id of the specif message
 * returns the specific message and determines if it is a palindrome or http staus NOT_FOUND if doesn't exist
