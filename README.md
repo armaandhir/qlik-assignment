@@ -10,7 +10,7 @@ Follow these steps to set up the environment, build and run the service:
 * Since the microservice uses MySQL as the database, make sure MySQL is installed.
 * Start your MySQL server locally and create a database called qlik-assignment(default database).
 * Build will fail if no MySQL running instance exists.
-* Make sure the database uri is then updated in application.properties.
+* Make sure the database uri, username and password is then updated in application.properties as per your local db instance.
 * No need to create tables as the JPA and hibernate will take care of it.
 
 To Build and run the system with one command, navigate to the directory and type
