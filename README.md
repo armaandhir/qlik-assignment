@@ -4,11 +4,14 @@ A simple microservice exposing rest endpoints built with Java Spring boot framew
 ## Building, Deployment and Accessing
 
 ### Locally
-Clone the repository and make sure you have java 8 and Gradle installed
+Follow these steps to set up the environment, build and run the service:
 
-Start your MySQL server locally and create a database called qlik-assignment.
-Make sure the database uri is then updated in application.properties.
-No need to create tables as the JPA and hibernate will take care of it.
+* Clone the repository and make sure you have java 8 and Gradle installed.
+* Since the microservice uses MySQL as the database, make sure MySQL is installed.
+* Start your MySQL server locally and create a database called qlik-assignment(default database).
+* Build will fail if no MySQL running instance exists.
+* Make sure the database uri is then updated in application.properties.
+* No need to create tables as the JPA and hibernate will take care of it.
 
 To Build and run the system with one command, navigate to the directory and type
 ```
