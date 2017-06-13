@@ -103,6 +103,8 @@ The UI built in any language can use the endpoints to use the service.
 * Deleting a row from the database is contradictory. Enabling or disabling a row is preferred.
 * More endpoints can be added for getting posted messages by a user, retrieve only recieved messages etc.
 * Unit testing needs to be added to test the business rules. JUnit wprds very well with spring framework.
+* shell/bash script to automatically install mysql db and create db
+* Automated vm setup using vagrant/puppet etc
 
 
 
